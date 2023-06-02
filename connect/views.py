@@ -14,4 +14,8 @@ def produce(request):
     produce_message(topic, message)
 
     return HttpResponse('hi')
-str = ''
+
+def consume(request):
+    topic = 'my-topic'
+    consume_messages(topic)
+    return HttpResponse(f'hic ')

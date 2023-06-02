@@ -1,5 +1,6 @@
 from confluent_kafka import Consumer, KafkaException
 import uuid
+import threading
 
 # Generate a random UUID
 
@@ -38,3 +39,9 @@ def consume_messages(topic):
     finally:
         # Close the consumer to release its resources
         consumer.close()
+        
+def start_consumer(topic):
+    consumer_thread = threading.Thread(target=consume_messages, args=(topic,))
+    consumer_thread.start()
+        
+start_consumer('my-topic')
